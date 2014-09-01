@@ -4,16 +4,16 @@
 
 //*** MODELLO ***
 //#define MOD3DPRN_BASIC
-#define MOD3DPRN_MONSTER
+//#define MOD3DPRN_MONSTER
 //#define MOD3DPRN_LAB
-//#define MOD3DPRN_BASICL
+#define MOD3DPRN_BASICL
 //#define MOD3DPRN_BASICLX
 
 //*** ELETTRONICA ***
-//#define ELE3DPRN_MINI
-#define ELE3DPRN_MEGA
+#define ELE3DPRN_MINI
+//#define ELE3DPRN_MEGA
 
-#define ELE3DPRN_LCD
+//#define ELE3DPRN_LCD
 
 
 
@@ -45,7 +45,8 @@
 
 // This determines the communication speed of the printer
 // This determines the communication speed of the printer
-#define BAUDRATE 250000
+//#define BAUDRATE 250000 <-- This doesn't work on Linux with RepetierHost
+#define BAUDRATE 115200
 
 // This enables the serial port associated to the Bluetooth interface
 //#define BTENABLED              // Enable BT interface on AT90USB devices
@@ -108,19 +109,19 @@
 //AGG:G131231
 #if defined(MOD3DPRN_BASIC)
   #define CUSTOM_MENDEL_NAME "3DPRN-BASIC"
-#endif 
+#endif
 #if defined(MOD3DPRN_BASICL)
   #define CUSTOM_MENDEL_NAME "3DPRN-BASIC-L"
-#endif 
+#endif
 #if defined(MOD3DPRN_BASICLX)
   #define CUSTOM_MENDEL_NAME "3DPRN-BASIC-L"
-#endif 
+#endif
 #if defined(MOD3DPRN_LAB)
   #define CUSTOM_MENDEL_NAME "3DPRN-LAB"
-#endif 
+#endif
 #if defined(MOD3DPRN_MONSTER)
   #define CUSTOM_MENDEL_NAME "3DPRN-MONSTER"
-#endif 
+#endif
 
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
@@ -378,7 +379,7 @@
 //AGG:G131231
 #if defined(MOD3DPRN_LAB)
   #define min_software_endstops false //If true, axis won't move to coordinates less than HOME_POS.
-#endif 
+#endif
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
 
 // Travel limits after homing
@@ -394,19 +395,22 @@
   #define X_MAX_POS 650
   #define Y_MAX_POS 670
   #define Z_MAX_POS 515
-#endif 
+#endif
 
 #if defined(MOD3DPRN_LAB)
   #define X_MAX_POS 320
   #define Y_MAX_POS 450
   #define Z_MAX_POS 300
-#endif 
+#endif
 
 #if defined(MOD3DPRN_BASICL) || defined(MOD3DPRN_BASICLX)
+//   #define X_MAX_POS 200
+//   #define Y_MAX_POS 200
+//   #define Z_MAX_POS 200
   #define X_MAX_POS 200
   #define Y_MAX_POS 200
-  #define Z_MAX_POS 200
-#endif 
+  #define Z_MAX_POS 167
+#endif
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
 #define Y_MAX_LENGTH (Y_MAX_POS - Y_MIN_POS)
@@ -464,12 +468,12 @@
   // with accurate bed leveling, the bed is sampled in a ACCURATE_BED_LEVELING_POINTSxACCURATE_BED_LEVELING_POINTS grid and least squares solution is calculated
   // Note: this feature occupies 10'206 byte
   #define ACCURATE_BED_LEVELING
-  
+
   #ifdef ACCURATE_BED_LEVELING
      // I wouldn't see a reason to go above 3 (=9 probing points on the bed)
     #define ACCURATE_BED_LEVELING_POINTS 2
   #endif
-  
+
 #endif
 
 
@@ -511,20 +515,20 @@
 //!AGG:G131220
 #if defined(MOD3DPRN_LAB)
   #define DEFAULT_MAX_ACCELERATION      {1500,1500,1500,20000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-  #define DEFAULT_ACCELERATION          800    // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
+  #define DEFAULT_ACCELERATION          800    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
   #define DEFAULT_XYJERK                10.0    // (mm/sec)
-#endif 
+#endif
 #if defined(MOD3DPRN_MONSTER)
   #define DEFAULT_MAX_ACCELERATION      {1000,1000,1000,8000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-  #define DEFAULT_ACCELERATION          200    // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
+  #define DEFAULT_ACCELERATION          200    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
   #define DEFAULT_XYJERK                10.0    // (mm/sec)
-#endif 
+#endif
 #if defined(MOD3DPRN_BASICL) || defined(MOD3DPRN_BASICLX)
   #define DEFAULT_MAX_FEEDRATE          {200, 200, 80, 500}    // (mm/sec)
   #define DEFAULT_MAX_ACCELERATION      {2000,2000,2000,8000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-  #define DEFAULT_ACCELERATION          2000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
+  #define DEFAULT_ACCELERATION          2000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
   #define DEFAULT_XYJERK                20.0    // (mm/sec)
-#endif 
+#endif
 
 //===========================================================================
 //=============================Additional Features===========================
